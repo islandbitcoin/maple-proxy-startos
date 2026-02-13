@@ -17,7 +17,7 @@ export const main = sdk.setupMain(async ({ effects }) => {
       }),
       'maple-proxy-sub',
     ),
-    exec: { command: ['/usr/local/bin/maple-proxy'] },
+    exec: { command: sdk.useEntrypoint() },
     ready: {
       display: i18n('API Interface'),
       fn: () =>
