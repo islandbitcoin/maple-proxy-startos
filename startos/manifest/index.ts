@@ -19,6 +19,10 @@ export const manifest = setupManifest({
       source: { dockerTag: 'ghcr.io/opensecretcloud/maple-proxy:latest' },
       arch: ['x86_64', 'aarch64'],
     },
+    'maple-ui': {
+      source: { dockerBuild: { workdir: 'assets/ui' } },
+      arch: ['x86_64', 'aarch64'],
+    },
   },
   alerts: {
     install: null,

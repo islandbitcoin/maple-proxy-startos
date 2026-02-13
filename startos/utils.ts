@@ -2,3 +2,4 @@
 // throughout the package codebase.
 
 export const apiPort = 8080
+export const uiPort = 80

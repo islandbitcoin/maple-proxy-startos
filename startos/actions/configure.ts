@@ -36,9 +36,9 @@ export const configure = sdk.Action.withInput(
     name: i18n('Configure'),
     description: i18n('Set your Maple API key and backend URL'),
     warning: null,
-    allowedStatuses: 'any' as const,
+    allowedStatuses: 'any',
     group: null,
-    visibility: 'enabled' as const,
+    visibility: 'enabled',
   }),
 
   // Input spec
@@ -61,14 +61,14 @@ export const configure = sdk.Action.withInput(
     })
 
     return {
-      version: '1' as const,
+      version: '1',
       title: 'Configuration Saved',
       message: 'Your Maple Proxy configuration has been updated.',
       result: {
-        type: 'group' as const,
+        type: 'group',
         value: [
           {
-            type: 'single' as const,
+            type: 'single',
             name: 'Backend URL',
             description: null,
             value: input.backendUrl,
@@ -77,7 +77,7 @@ export const configure = sdk.Action.withInput(
             qr: false,
           },
           {
-            type: 'single' as const,
+            type: 'single',
             name: 'API Key',
             description: null,
             value: input.apiKey ? '••••••••' : '(not set — clients must provide their own)',

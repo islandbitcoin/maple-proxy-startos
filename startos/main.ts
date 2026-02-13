@@ -1,6 +1,6 @@
 import { i18n } from './i18n'
 import { sdk } from './sdk'
-import { apiPort } from './utils'
+import { apiPort, uiPort } from './utils'
 import { storeJson } from './fileModels/store.json'
 
 export const main = sdk.setupMain(async ({ effects }) => {
@@ -22,7 +22,8 @@ export const main = sdk.setupMain(async ({ effects }) => {
     env.MAPLE_API_KEY = store.apiKey
   }
 
-  return sdk.Daemons.of(effects).addDaemon('primary', {
+  // Maple Proxy API daemon
+  const daemons = sdk.Daemons.of(effects).addDaemon('primary', {
     subcontainer: await sdk.SubContainer.of(
       effects,
       { imageId: 'maple-proxy' },
@@ -40,6 +41,7 @@ export const main = sdk.setupMain(async ({ effects }) => {
     },
     ready: {
       display: i18n('API Interface'),
+      gracePeriod: 10_000,
       fn: () =>
         sdk.healthCheck.checkPortListening(effects, apiPort, {
           successMessage: i18n('The API is ready'),
@@ -48,4 +50,28 @@ export const main = sdk.setupMain(async ({ effects }) => {
     },
     requires: [],
   })
+
+  // Web UI daemon (nginx)
+  const withUi = await daemons.addDaemon('ui', {
+    subcontainer: await sdk.SubContainer.of(
+      effects,
+      { imageId: 'maple-ui' },
+      null,
+      'maple-ui-sub',
+    ),
+    exec: {
+      command: ['nginx', '-g', 'daemon off;'],
+    },
+    ready: {
+      display: i18n('Web UI'),
+      fn: () =>
+        sdk.healthCheck.checkPortListening(effects, uiPort, {
+          successMessage: i18n('The Web UI is ready'),
+          errorMessage: i18n('The Web UI is not ready'),
+        }),
+    },
+    requires: ['primary'],
+  })
+
+  return withUi
 })

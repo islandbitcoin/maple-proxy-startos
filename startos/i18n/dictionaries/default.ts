@@ -17,6 +17,12 @@ const dict = {
 
   // init/initializeService.ts
   'Set your Maple API key': 8,
+
+  // Web UI
+  'Web UI': 9,
+  'Chat interface for Maple Proxy': 10,
+  'The Web UI is ready': 11,
+  'The Web UI is not ready': 12,
 } as const
 
 /**
