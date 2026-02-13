@@ -10,6 +10,13 @@ const dict = {
   // interfaces.ts
   API: 4,
   'OpenAI-compatible API endpoint for Maple Proxy': 5,
+
+  // actions/configure.ts
+  Configure: 6,
+  'Set your Maple API key and backend URL': 7,
+
+  // init/initializeService.ts
+  'Set your Maple API key': 8,
 } as const
 
 /**
