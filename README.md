@@ -103,6 +103,7 @@ Configuration is stored in `store.json` on the `main` volume and read by the map
 | Action | Description | Allowed States |
 |--------|-------------|----------------|
 | Configure | Set API key and backend URL | Any |
+| Proxy Properties | Display API and UI port numbers | Any |
 
 ---
 
@@ -183,7 +184,7 @@ interfaces:
     port: 80
     type: ui
 dependencies: none
-actions: [configure]
+actions: [configure, proxy-properties]
 health_checks:
   primary: { port_listening: 8080, grace_period: 10s }
   ui: { port_listening: 80 }

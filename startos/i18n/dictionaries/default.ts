@@ -23,6 +23,10 @@ const dict = {
   'Chat interface for Maple Proxy': 10,
   'The Web UI is ready': 11,
   'The Web UI is not ready': 12,
+
+  // actions/proxyProperties.ts
+  'Proxy Properties': 13,
+  'Display the port numbers used by Maple Proxy': 14,
 } as const
 
 /**
