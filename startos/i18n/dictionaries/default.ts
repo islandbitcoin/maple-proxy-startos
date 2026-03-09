@@ -3,30 +3,28 @@ export const DEFAULT_LANG = 'en_US'
 const dict = {
   // main.ts
   'Starting Maple Proxy!': 0,
-  'API Interface': 1,
-  'The API is ready': 2,
-  'The API is not ready': 3,
+  'Proxy Server': 1,
+  'The proxy server is ready': 2,
+  'The proxy server is not ready': 3,
+  'Web UI': 4,
+  'The Web UI is ready': 5,
+  'The Web UI is not ready': 6,
 
   // interfaces.ts
-  API: 4,
-  'OpenAI-compatible API endpoint for Maple Proxy': 5,
+  API: 7,
+  'OpenAI-compatible API endpoint for Maple Proxy': 8,
+  'Chat interface for Maple Proxy': 9,
 
   // actions/configure.ts
-  Configure: 6,
-  'Set your Maple API key and backend URL': 7,
+  Configure: 10,
+  'Set your Maple API key and backend URL': 11,
+  'Backend URL': 12,
+  'The Maple/OpenSecret backend URL. Only change this if you are running your own backend.': 13,
+  'API Key': 14,
+  'Your Maple API key. If left empty, clients must provide their own key via the Authorization header.': 15,
 
   // init/initializeService.ts
-  'Set your Maple API key': 8,
-
-  // Web UI
-  'Web UI': 9,
-  'Chat interface for Maple Proxy': 10,
-  'The Web UI is ready': 11,
-  'The Web UI is not ready': 12,
-
-  // actions/proxyProperties.ts
-  'Proxy Properties': 13,
-  'Display the port numbers used by Maple Proxy': 14,
+  'Set your Maple API key': 16,
 } as const
 
 /**

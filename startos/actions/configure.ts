@@ -1,29 +1,31 @@
+import { MAPLE_BACKEND_URL, storeJson } from '../fileModels/store.json'
 import { i18n } from '../i18n'
 import { sdk } from '../sdk'
-import { storeJson } from '../fileModels/store.json'
 
 const { InputSpec, Value } = sdk
 
 const inputSpec = InputSpec.of({
-  apiKey: Value.text({
-    name: 'API Key',
-    description:
+  MAPLE_BACKEND_URL: Value.text({
+    name: i18n('Backend URL'),
+    description: i18n(
+      'The Maple/OpenSecret backend URL. Only change this if you are running your own backend.',
+    ),
+    warning: null,
+    default: MAPLE_BACKEND_URL,
+    required: true,
+    masked: false,
+    placeholder: MAPLE_BACKEND_URL,
+  }),
+  MAPLE_API_KEY: Value.text({
+    name: i18n('API Key'),
+    description: i18n(
       'Your Maple API key. If left empty, clients must provide their own key via the Authorization header.',
+    ),
     warning: null,
     default: null,
     required: false,
     masked: true,
     placeholder: 'maple-api-key-...',
-  }),
-  backendUrl: Value.text({
-    name: 'Backend URL',
-    description:
-      'The Maple/OpenSecret backend URL. Only change this if you are running your own backend.',
-    warning: null,
-    default: 'https://enclave.trymaple.ai',
-    required: true,
-    masked: false,
-    placeholder: 'https://enclave.trymaple.ai',
   }),
 })
 
@@ -45,48 +47,12 @@ export const configure = sdk.Action.withInput(
   inputSpec,
 
   // Pre-fill with current values
-  async ({ effects }) => {
-    const store = await storeJson.read((s) => s).once()
-    return {
-      apiKey: store?.apiKey ?? null,
-      backendUrl: store?.backendUrl ?? 'https://enclave.trymaple.ai',
-    }
-  },
+  async ({ effects }) => storeJson.read().once(),
 
   // Handler
-  async ({ effects, input }) => {
-    await storeJson.merge(effects, {
-      apiKey: input.apiKey ?? undefined,
-      backendUrl: input.backendUrl,
-    })
-
-    return {
-      version: '1',
-      title: 'Configuration Saved',
-      message: 'Your Maple Proxy configuration has been updated.',
-      result: {
-        type: 'group',
-        value: [
-          {
-            type: 'single',
-            name: 'Backend URL',
-            description: null,
-            value: input.backendUrl,
-            masked: false,
-            copyable: true,
-            qr: false,
-          },
-          {
-            type: 'single',
-            name: 'API Key',
-            description: null,
-            value: input.apiKey ? '••••••••' : '(not set — clients must provide their own)',
-            masked: false,
-            copyable: false,
-            qr: false,
-          },
-        ],
-      },
-    }
-  },
+  async ({ effects, input }) =>
+    storeJson.merge(effects, {
+      MAPLE_BACKEND_URL: input.MAPLE_BACKEND_URL,
+      MAPLE_API_KEY: input.MAPLE_API_KEY ?? undefined,
+    }),
 )

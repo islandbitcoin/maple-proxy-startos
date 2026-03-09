@@ -1,11 +1,11 @@
-import { matches, FileHelper } from '@start9labs/start-sdk'
+import { FileHelper, z } from '@start9labs/start-sdk'
 import { sdk } from '../sdk'
 
-const { object, string } = matches
+export const MAPLE_BACKEND_URL = 'https://enclave.trymaple.ai'
 
-const shape = object({
-  apiKey: string.optional().onMismatch(undefined),
-  backendUrl: string.optional().onMismatch('https://enclave.trymaple.ai'),
+const shape = z.object({
+  MAPLE_BACKEND_URL: z.string().catch(MAPLE_BACKEND_URL),
+  MAPLE_API_KEY: z.string().optional().catch(undefined),
 })
 
 export const storeJson = FileHelper.json(

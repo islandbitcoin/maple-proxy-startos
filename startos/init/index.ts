@@ -7,12 +7,12 @@ import { restoreInit } from '../backups'
 import { initializeService } from './initializeService'
 
 export const init = sdk.setupInit(
+  initializeService,
   restoreInit,
   versionGraph,
   setInterfaces,
   setDependencies,
   actions,
-  initializeService,
 )
 
 export const uninit = sdk.setupUninit(versionGraph)
