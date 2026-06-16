@@ -5,7 +5,7 @@ export const manifest = setupManifest({
   id: 'maple-proxy',
   title: 'Maple Proxy',
   license: 'MIT',
-  packageRepo: 'https://github.com/Start9-Community/maple-proxy-startos',
+  packageRepo: 'https://github.com/islandbitcoin/maple-proxy-startos',
   upstreamRepo: 'https://github.com/OpenSecretCloud/maple-proxy',
   marketingUrl: 'https://trymaple.ai/',
   donationUrl: null,
