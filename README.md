@@ -41,8 +41,8 @@
 
 The service runs two containers:
 
-- **maple-proxy** — the Rust API server (upstream image, unmodified)
-- **maple-ui** — nginx serving a chat web UI and reverse-proxying `/v1/*` to the API
+- **maple-proxy**: the Rust API server (upstream image, unmodified)
+- **maple-ui**: nginx serving a chat web UI and reverse-proxying `/v1/*` to the API
 
 ---
 
@@ -54,7 +54,7 @@ The service runs two containers:
 
 **Key paths on the `main` volume:**
 
-- `store.json` — persists API key and backend URL configuration
+- `store.json`: persists API key and backend URL configuration
 
 ---
 
@@ -76,7 +76,7 @@ All configuration is managed through the **Configure** action in the StartOS UI.
 
 | Setting     | Description                                                   | Default                       |
 | ----------- | ------------------------------------------------------------- | ----------------------------- |
-| API Key     | Your Maple API key (optional — clients can provide their own) | _(empty)_                     |
+| API Key     | Your Maple API key (optional; clients can provide their own) | _(empty)_                     |
 | Backend URL | The Maple/OpenSecret backend URL                              | `https://enclave.trymaple.ai` |
 
 Configuration is stored in `store.json` on the `main` volume and read by the maple-proxy binary at startup.
@@ -92,10 +92,10 @@ Configuration is stored in `store.json` on the `main` volume and read by the map
 
 **API endpoints:**
 
-- `POST /v1/chat/completions` — chat completions (streaming supported)
-- `GET /v1/models` — list available models
-- `POST /v1/embeddings` — text embeddings
-- `GET /health` — health check
+- `POST /v1/chat/completions`: chat completions (streaming supported)
+- `GET /v1/models`: list available models
+- `POST /v1/embeddings`: text embeddings
+- `GET /health`: health check
 
 ---
 
@@ -143,9 +143,9 @@ The `main` volume is included in backups, preserving your `store.json` configura
 
 ## Limitations and Differences
 
-1. **Configuration via action only** — upstream uses environment variables directly; on StartOS, all configuration is managed through `store.json` via the Configure action
-2. **Bundled web UI** — StartOS adds a custom nginx chat interface not included in the upstream project
-3. **StartOS networking** — uses StartOS multi-host interfaces instead of direct port binding
+1. **Configuration via action only**: upstream uses environment variables directly; on StartOS, all configuration is managed through `store.json` via the Configure action
+2. **Bundled web UI**: StartOS adds a custom nginx chat interface not included in the upstream project
+3. **StartOS networking**: uses StartOS multi-host interfaces instead of direct port binding
 
 ---
 

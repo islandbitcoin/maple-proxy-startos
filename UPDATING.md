@@ -4,7 +4,7 @@ Maple Proxy ships two images: the upstream `maple-proxy` (pulled from GHCR) and 
 
 ## Determining the upstream version
 
-- **maple-proxy** — canonical home <https://github.com/OpenSecretCloud/maple-proxy>. Latest release:
+- **maple-proxy**: canonical home <https://github.com/OpenSecretCloud/maple-proxy>. Latest release:
   ```
   gh release view -R OpenSecretCloud/maple-proxy --json tagName -q .tagName
   ```
@@ -12,4 +12,4 @@ Maple Proxy ships two images: the upstream `maple-proxy` (pulled from GHCR) and 
 
 ## Applying the bump
 
-- **maple-proxy** — in `startos/manifest/index.ts`, set `images['maple-proxy'].source.dockerTag` to `ghcr.io/opensecretcloud/maple-proxy:<new version>` (no leading `v`).
+- **maple-proxy**: in `startos/manifest/index.ts`, set `images['maple-proxy'].source.dockerTag` to `ghcr.io/opensecretcloud/maple-proxy:<new version>` (no leading `v`).
