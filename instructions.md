@@ -2,14 +2,14 @@
 
 ## Documentation
 
-- [Maple Proxy README](https://github.com/OpenSecretCloud/maple-proxy/blob/master/README.md) — the upstream project overview and configuration reference.
+- [Maple Proxy README](https://github.com/OpenSecretCloud/maple-proxy/blob/master/README.md): the upstream project overview and configuration reference.
 
 ## What you get on StartOS
 
 Maple Proxy runs as two containers on StartOS: the Rust API server (upstream image) and a bundled nginx-based chat web UI. It exposes two interfaces:
 
-- **API** — an OpenAI-compatible endpoint (`/v1/chat/completions`, `/v1/models`, `/v1/embeddings`) you can point any OpenAI-compatible client at.
-- **Web UI** — a built-in chat client that talks to the API for you, so you can use Maple without configuring a separate client.
+- **API**: an OpenAI-compatible endpoint (`/v1/chat/completions`, `/v1/models`, `/v1/embeddings`) you can point any OpenAI-compatible client at.
+- **Web UI**: a built-in chat client that talks to the API for you, so you can use Maple without configuring a separate client.
 
 Your API key and backend URL are stored on the package's data volume and survive restarts, updates, and backups.
 
